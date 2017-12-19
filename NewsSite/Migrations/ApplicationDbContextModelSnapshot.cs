@@ -135,6 +135,8 @@ namespace NewsSite.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<int>("Age");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
