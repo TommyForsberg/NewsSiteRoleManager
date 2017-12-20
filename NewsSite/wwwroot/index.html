@@ -5,22 +5,24 @@
 </head>
 <body>
     <!---------------------------------------------------------------------------------------------->
-
     <h3>ANVÄNDARE</h3>
     <button id="populate-database">Återskapa alla användare</button>
     <!---------------------------------------------------------------------------------------------->
 
-    <h3>LOGGA IN</h3>
-
-
+    <div id="loginSpace">
+        <h3>LOGGA IN</h3>
+        <select id="userdropdown" name="user-dropdown">
+            <option>John Doe</option>
+        </select>
+        <br />
+        <button id="sign-in">Logga in</button>
+    </div>
     <!---------------------------------------------------------------------------------------------->
-
     <h3>KOLLA ACCESS</h3>
-
     <!---------------------------------------------------------------------------------------------->
-
+    <button id="check-open-news">Kan se öppen nyhet</button>
+    <button id="check-hidden-news">Kan se dold nyhet</button>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/demo.js"></script>
-
 </body>
 </html>

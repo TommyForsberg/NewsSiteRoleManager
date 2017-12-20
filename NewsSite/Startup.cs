@@ -31,8 +31,13 @@ namespace NewsSite
 
             services.AddAuthorization(options =>
             {
-                // TODO: Lägg in policys...
-                options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Administrator"));
+            // TODO: Lägg in policys...
+            options.AddPolicy("HiddenNews", policy => policy
+            .RequireRole("Administrator", "Subscriber", "Publisher"));
+
+                options.AddPolicy("Atleast20", policy => policy
+                .Requirements.Add(new MinimumAgeRequirement(20)));
+                
 
             });
 

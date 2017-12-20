@@ -66,15 +66,17 @@ namespace NewsSite.Controllers
                 {
                     var line = streamReader.ReadLine();
                     var data = line.Split(new[] { ',' });
-                    int age = 0;
+                    int age;
                     string role = data[2];
+                    var user = new ApplicationUser { UserName = data[1] };
 
                     if (!String.IsNullOrWhiteSpace(data[3]))
+                    {
                         age = int.Parse(data[3]);
-
-                    var user = new ApplicationUser { UserName = data[1], Age = age };
+                        user.Age = age;
+                    }
+                       
                    
-
                     var result = await userManager.CreateAsync(user);
                     if (!result.Succeeded)
                     {

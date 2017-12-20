@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.IO;
 using System;
+using System.Linq;
 
 namespace NewsSite.Controllers
 {
@@ -32,17 +33,19 @@ namespace NewsSite.Controllers
             return Ok();
         }
 
+
+
         // TODO: Skapa en Policy i Startup.cs och avkommentera sedan nedan
         // Controllern behöver inte innehålla någon mer kod
 
-        //[Authorize(Policy = "HiddenNews")]
-        //[HttpGet, Route("view/HiddenNews")]
-        //public IActionResult ViewHiddenNews()
-        //{
-        //    return Ok();
-        //}
-
-        
-
+        [Authorize(Policy = "HiddenNews")]
+        [HttpGet, Route("view/HiddenNews")]
+        public IActionResult ViewHiddenNews()
+        {
+            return Ok();
         }
+
+
+
+    }
 }
