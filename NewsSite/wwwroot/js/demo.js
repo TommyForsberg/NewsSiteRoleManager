@@ -84,3 +84,16 @@ $(document).on('click', '#check-hidden-news', function () {
 
         })
 });
+
+$(document).on('click', '#check-adult-news', function () {
+
+    $.ajax({
+        url: '/check/view/AdultNews',
+        method: 'GET',
+
+    })
+        .done(function (result) {
+            console.log(result);
+
+        })
+});

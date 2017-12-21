@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -84,9 +85,16 @@ namespace NewsSite.Controllers
                     }
                     if (!String.IsNullOrWhiteSpace(data[2]))
                         await userManager.AddToRoleAsync(user, role);
+
+                    
+                    var roles = await userManager.GetRolesAsync(user);
+                    if(roles.Contains("Administrator")||roles.Contains("Publisher")|| user.Age != 0 && user.Age >= 20)
+                    {
+                        await userManager.AddClaimAsync(user, new Claim("MinimumAge","true"));
+                    }
                 }
             }
-            return Ok("Database was seeded");
+            return Ok(userManager.Users.ToList());
         }
     }
 }

@@ -45,6 +45,13 @@ namespace NewsSite.Controllers
             return Ok();
         }
 
+        [Authorize(Policy = "MinimumAgePolicy")]
+        [Authorize(Policy = "HiddenNews")]
+        [HttpGet, Route("view/adultnews")]
+        public IActionResult ViewAdultNews()
+        {
+            return Ok("Adult News");
+        }
 
 
     }

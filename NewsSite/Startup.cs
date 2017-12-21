@@ -35,8 +35,8 @@ namespace NewsSite
             options.AddPolicy("HiddenNews", policy => policy
             .RequireRole("Administrator", "Subscriber", "Publisher"));
 
-                options.AddPolicy("Atleast20", policy => policy
-                .Requirements.Add(new MinimumAgeRequirement(20)));
+                options.AddPolicy("MinimumAgePolicy", policy => policy
+                .RequireClaim("MinimumAge"));
                 
 
             });
