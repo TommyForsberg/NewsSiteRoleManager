@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsSite.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NewsSite
 {
@@ -37,10 +38,12 @@ namespace NewsSite
 
                 options.AddPolicy("MinimumAgePolicy", policy => policy
                 .RequireClaim("MinimumAge"));
-                
 
+                options.AddPolicy("AtLeast21", policy =>
+            policy.Requirements.Add(new MinimumAgeRequirement(21)));
             });
 
+            services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

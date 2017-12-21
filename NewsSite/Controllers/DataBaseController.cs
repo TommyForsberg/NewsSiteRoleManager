@@ -92,6 +92,8 @@ namespace NewsSite.Controllers
                     {
                         await userManager.AddClaimAsync(user, new Claim("MinimumAge","true"));
                     }
+
+                    await userManager.AddClaimAsync(user, new Claim("AtLeast21",user.Age.ToString()));
                 }
             }
             return Ok(userManager.Users.ToList());
