@@ -53,6 +53,13 @@ namespace NewsSite.Controllers
             return Ok("Adult News");
         }
 
+        [HttpGet, Route("view/publishsports")]
+        [Authorize(Policy = "SportsPublisher",Roles ="Publisher")]
+        public IActionResult PublishSports()
+        {
+            return Ok("Your sports article was published!");
+        }
+
 
     }
 }

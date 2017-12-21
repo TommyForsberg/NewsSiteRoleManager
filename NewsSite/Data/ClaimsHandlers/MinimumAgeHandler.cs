@@ -11,13 +11,13 @@ public class MinimumAgeHandler : AuthorizationHandler<MinimumAgeRequirement>
                                                    MinimumAgeRequirement requirement)
     {
         //If the claim is not present then the user is of an evaluated role and age should not be checked.
-        if (!context.User.HasClaim(c => c.Type == "MinimumAge"))
+        if (!context.User.HasClaim(c => c.Type == CustomClaimTypes.MinimumAge))
         {
             context.Succeed(requirement);
             return Task.CompletedTask;
         }
 
-        var age =  int.Parse(context.User.FindFirst(c => c.Type == "MinimumAge").Value);
+        var age =  int.Parse(context.User.FindFirst(c => c.Type == CustomClaimTypes.MinimumAge).Value);
 
 
         if (age >= requirement.MinimumAge)

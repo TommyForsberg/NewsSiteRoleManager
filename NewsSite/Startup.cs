@@ -37,8 +37,11 @@ namespace NewsSite
 
                 options.AddPolicy("MinimumAgePolicy", policy =>
             policy.Requirements.Add(new MinimumAgeRequirement(20)));
-            });
 
+                options.AddPolicy("SportsPublisher", policy => 
+                policy.RequireClaim(CustomClaimTypes.Publisher, "Sports"));
+            });
+            
             services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
         }
 

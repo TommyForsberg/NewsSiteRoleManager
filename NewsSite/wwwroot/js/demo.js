@@ -72,8 +72,6 @@ $(document).on('click', '#check-open-news', function () {
     })
         .done(function (result) {
             console.log(result);
-            console.log("hej");
-
         })
 });
 
@@ -87,8 +85,6 @@ $(document).on('click', '#check-hidden-news', function () {
     })
         .done(function (result) {
             console.log(result);
-            console.log("hej");
-
         })
 });
 
@@ -96,6 +92,18 @@ $(document).on('click', '#check-adult-news', function () {
 
     $.ajax({
         url: '/check/view/AdultNews',
+        method: 'GET',
+
+    })
+        .done(function (result) {
+            console.log(result);
+
+        })
+});
+$(document).on('click', '#publish-sport-news', function () {
+
+    $.ajax({
+        url: '/check/view/publishsports',
         method: 'GET',
 
     })

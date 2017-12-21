@@ -91,7 +91,16 @@ namespace NewsSite.Controllers
                   
                     //Sets the minimumage-requirement only if the user is a subscriber.
                     if(roles.Contains("Subscriber"))
-                    await userManager.AddClaimAsync(user, new Claim("MinimumAge",user.Age.ToString()));
+                    {
+                        await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.MinimumAge, user.Age.ToString()));
+                    }
+
+                    if (roles.Contains("Publisher"))
+                    {
+                        if (user.UserName == "peter@gmail.com")
+                            await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.Publisher, "Sports"));
+                    }
+                    
                 }
             }
             return Ok(userManager.Users.ToList());
