@@ -125,3 +125,15 @@ $(document).on('click', '#publish-culture-news', function () {
 
         })
 });
+$(document).on('click', '#get-users-and-claims', function () {
+
+    $.ajax({
+        url: '/api/user/GetUsersWithClaims',
+        method: 'GET',
+
+    })
+        .done(function (result) {
+            console.log(result);
+
+        })
+});

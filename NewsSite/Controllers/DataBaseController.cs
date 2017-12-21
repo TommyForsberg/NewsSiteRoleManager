@@ -76,8 +76,8 @@ namespace NewsSite.Controllers
                         age = int.Parse(data[3]);
                         user.Age = age;
                     }
-                       
-                   
+
+
                     var result = await userManager.CreateAsync(user);
                     if (!result.Succeeded)
                     {
@@ -86,11 +86,11 @@ namespace NewsSite.Controllers
                     if (!String.IsNullOrWhiteSpace(data[2]))
                         await userManager.AddToRoleAsync(user, role);
 
-                    
+
                     var roles = await userManager.GetRolesAsync(user);
-                  
+
                     //Sets the minimumage-requirement only if the user is a subscriber.
-                    if(roles.Contains("Subscriber"))
+                    if (roles.Contains("Subscriber"))
                     {
                         await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.MinimumAge, user.Age.ToString()));
                     }
@@ -98,9 +98,15 @@ namespace NewsSite.Controllers
                     if (roles.Contains("Publisher"))
                     {
                         if (user.UserName == "peter@gmail.com")
-                            await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.Publisher, "Sports","Economy"));
+                        {
+                            await userManager
+                                .AddClaimsAsync(user, new Claim[]
+                                {
+                                    new Claim(CustomClaimTypes.Publisher, "Sports"),
+                                    new Claim(CustomClaimTypes.Publisher, "Economy")
+                                });
+                        }
                     }
-                    
                 }
             }
             return Ok(userManager.Users.ToList());

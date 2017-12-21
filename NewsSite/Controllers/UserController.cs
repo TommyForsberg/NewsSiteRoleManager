@@ -24,8 +24,26 @@ namespace NewsSite.Controllers
         [HttpGet("GetUsers")]
         public IActionResult GetUsers()
         {
-            //Todo vymodell med bara email
             return Ok(userManager.Users.ToList());
+        }
+
+        [HttpGet("GetUsersWithClaims")]
+        public async Task<IActionResult> GetUsersWithClaims()
+        {
+            var users = userManager.Users.ToList();
+            var usersAndClaims = new List<UserAndClaimsVM>();
+            foreach(var user in users)
+            {
+                var claims = await userManager.GetClaimsAsync(user);
+                usersAndClaims.Add(new UserAndClaimsVM
+                {
+                    User = user,
+                    Claims = claims.ToList()
+                       
+                });
+            }
+         
+            return Ok(usersAndClaims);            
         }
 
         [HttpPost("SignIn")]
