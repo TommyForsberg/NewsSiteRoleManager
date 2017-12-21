@@ -26,21 +26,17 @@ namespace NewsSite
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
 
             services.AddMvc();
 
             services.AddAuthorization(options =>
             {
-            // TODO: Lägg in policys...
-            options.AddPolicy("HiddenNews", policy => policy
-            .RequireRole("Administrator", "Subscriber", "Publisher"));
+                options.AddPolicy("HiddenNews", policy => policy
+                .RequireRole("Administrator", "Subscriber", "Publisher"));
 
-                options.AddPolicy("MinimumAgePolicy", policy => policy
-                .RequireClaim("MinimumAge"));
-
-                options.AddPolicy("AtLeast21", policy =>
-            policy.Requirements.Add(new MinimumAgeRequirement(21)));
+                options.AddPolicy("MinimumAgePolicy", policy =>
+            policy.Requirements.Add(new MinimumAgeRequirement(20)));
             });
 
             services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
@@ -57,7 +53,7 @@ namespace NewsSite
             app.UseStatusCodePages();
             app.UseAuthentication();
 
-            app.UseMvc(); 
+            app.UseMvc();
         }
     }
 }

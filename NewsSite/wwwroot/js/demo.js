@@ -28,6 +28,13 @@ $(document).on('click', '#populate-database', function () {
         method: 'GET'
     })
         .done(function (result) {
+            var dropdown = $("#userdropdown")
+            dropdown.html('');
+            $.each(result, function (k, user) {
+
+                dropdown.append('<option value="' + user.userName + '">' + user.userName + '</option>');
+
+            });
             console.log(result);
 
         })

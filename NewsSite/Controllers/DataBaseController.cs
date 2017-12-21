@@ -88,12 +88,10 @@ namespace NewsSite.Controllers
 
                     
                     var roles = await userManager.GetRolesAsync(user);
-                    if(roles.Contains("Administrator")||roles.Contains("Publisher")|| user.Age != 0 && user.Age >= 20)
-                    {
-                        await userManager.AddClaimAsync(user, new Claim("MinimumAge","true"));
-                    }
-
-                    await userManager.AddClaimAsync(user, new Claim("AtLeast21",user.Age.ToString()));
+                  
+                    //Sets the minimumage-requirement only if the user is a subscriber.
+                    if(roles.Contains("Subscriber"))
+                    await userManager.AddClaimAsync(user, new Claim("MinimumAge",user.Age.ToString()));
                 }
             }
             return Ok(userManager.Users.ToList());

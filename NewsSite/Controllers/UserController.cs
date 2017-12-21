@@ -37,7 +37,7 @@ namespace NewsSite.Controllers
             {
 
                 await signInManager.SignInAsync(user,true);
-                return Ok(String.Format("{0} is signed in",userName));
+                return Ok(String.Format("{0} is signed in, registered age is {1}",userName, user.Age));
             }
             return NotFound();
             
