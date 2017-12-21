@@ -66,7 +66,7 @@ $(document).on('click', '#sign-in', function () {
 $(document).on('click', '#check-open-news', function () {
     
     $.ajax({
-        url: '/check/view/OpenNews',
+        url: '/news/OpenNews',
         method: 'GET',
       
     })
@@ -79,7 +79,7 @@ $(document).on('click', '#check-open-news', function () {
 $(document).on('click', '#check-hidden-news', function () {
 
     $.ajax({
-        url: '/check/view/HiddenNews',
+        url: '/news/HiddenNews',
         method: 'GET',
 
     })
@@ -91,7 +91,7 @@ $(document).on('click', '#check-hidden-news', function () {
 $(document).on('click', '#check-adult-news', function () {
 
     $.ajax({
-        url: '/check/view/AdultNews',
+        url: '/news/AdultNews',
         method: 'GET',
 
     })
@@ -103,7 +103,20 @@ $(document).on('click', '#check-adult-news', function () {
 $(document).on('click', '#publish-sport-news', function () {
 
     $.ajax({
-        url: '/check/view/publishsports',
+        url: '/news/publishsports',
+        method: 'GET',
+
+    })
+        .done(function (result) {
+            console.log(result);
+
+        })
+});
+
+$(document).on('click', '#publish-culture-news', function () {
+
+    $.ajax({
+        url: '/news/publishculture',
         method: 'GET',
 
     })

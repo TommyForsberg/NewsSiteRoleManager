@@ -10,15 +10,15 @@ using System.Linq;
 namespace NewsSite.Controllers
 {
 
-    [Route("check")]
-    public class CheckController : Controller
+    [Route("news")]
+    public class NewsController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
        
 
-        public CheckController(UserManager<ApplicationUser> userManager, 
+        public NewsController(UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager)
         {
@@ -27,39 +27,40 @@ namespace NewsSite.Controllers
             this.roleManager = roleManager;
         }
 
-        [HttpGet, Route("view/OpenNews")]
+        [HttpGet, Route("OpenNews")]
+        [AllowAnonymous]
         public IActionResult ViewOpenNews()
         {
-            return Ok();
+            return Ok("Open news!");
         }
 
-
-
-        // TODO: Skapa en Policy i Startup.cs och avkommentera sedan nedan
-        // Controllern behöver inte innehålla någon mer kod
-
         [Authorize(Policy = "HiddenNews")]
-        [HttpGet, Route("view/HiddenNews")]
+        [HttpGet, Route("HiddenNews")]
         public IActionResult ViewHiddenNews()
         {
-            return Ok();
+            return Ok("Hidden news!");
         }
 
         [Authorize(Policy = "MinimumAgePolicy")]
         [Authorize(Policy = "HiddenNews")]
-        [HttpGet, Route("view/adultnews")]
+        [HttpGet, Route("adultnews")]
         public IActionResult ViewAdultNews()
         {
             return Ok("Adult News");
         }
 
-        [HttpGet, Route("view/publishsports")]
+        [HttpGet, Route("publishsports")]
         [Authorize(Policy = "SportsPublisher",Roles ="Publisher")]
         public IActionResult PublishSports()
         {
             return Ok("Your sports article was published!");
         }
 
-
+        [HttpGet, Route("publishculture")]
+        [Authorize(Policy = "CulturePublisher", Roles = "Publisher")]
+        public IActionResult PublishCulture()
+        {
+            return Ok("Your culture article was published!");
+        }
     }
 }

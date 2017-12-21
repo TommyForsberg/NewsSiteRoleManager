@@ -98,7 +98,7 @@ namespace NewsSite.Controllers
                     if (roles.Contains("Publisher"))
                     {
                         if (user.UserName == "peter@gmail.com")
-                            await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.Publisher, "Sports"));
+                            await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.Publisher, "Sports","Economy"));
                     }
                     
                 }

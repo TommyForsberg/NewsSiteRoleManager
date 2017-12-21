@@ -40,6 +40,13 @@ namespace NewsSite
 
                 options.AddPolicy("SportsPublisher", policy => 
                 policy.RequireClaim(CustomClaimTypes.Publisher, "Sports"));
+
+                options.AddPolicy("EconomyPublisher", policy =>
+                policy.RequireClaim(CustomClaimTypes.Publisher, "Economy"));
+
+                options.AddPolicy("CulturePublisher", policy =>
+               policy.RequireClaim(CustomClaimTypes.Publisher, "Culture"));
+
             });
             
             services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
