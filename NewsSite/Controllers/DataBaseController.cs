@@ -107,6 +107,11 @@ namespace NewsSite.Controllers
                                 });
                         }
                     }
+                    if (roles.Contains("Administrator"))
+                    {
+                        await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.Publisher, "Admin"));
+
+                    }
                 }
             }
             return Ok(userManager.Users.ToList());

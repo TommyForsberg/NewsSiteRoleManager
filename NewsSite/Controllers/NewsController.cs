@@ -50,14 +50,14 @@ namespace NewsSite.Controllers
         }
 
         [HttpGet, Route("publishsports")]
-        [Authorize(Policy = "SportsPublisher",Roles ="Publisher")]
+        [Authorize(Policy = "SportsPublisher")]
         public IActionResult PublishSports()
         {
             return Ok("Your sports article was published!");
         }
 
         [HttpGet, Route("publishculture")]
-        [Authorize(Policy = "CulturePublisher", Roles = "Publisher")]
+        [Authorize(Policy = "CulturePublisher")]
         public IActionResult PublishCulture()
         {
             return Ok("Your culture article was published!");

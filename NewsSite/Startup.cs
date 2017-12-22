@@ -39,13 +39,13 @@ namespace NewsSite
             policy.Requirements.Add(new MinimumAgeRequirement(20)));
 
                 options.AddPolicy("SportsPublisher", policy => 
-                policy.RequireClaim(CustomClaimTypes.Publisher, "Sports"));
+                policy.RequireClaim(CustomClaimTypes.Publisher, "Admin", "Sports"));
 
                 options.AddPolicy("EconomyPublisher", policy =>
-                policy.RequireClaim(CustomClaimTypes.Publisher, "Economy"));
+                policy.RequireClaim(CustomClaimTypes.Publisher, "Admin","Economy"));
 
                 options.AddPolicy("CulturePublisher", policy =>
-               policy.RequireClaim(CustomClaimTypes.Publisher, "Culture"));
+               policy.RequireClaim(CustomClaimTypes.Publisher, "Admin","Culture"));
 
             });
             
