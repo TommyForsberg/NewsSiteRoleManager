@@ -107,7 +107,7 @@ namespace NewsSite.Controllers
                                 });
                         }
                     }
-                    if (roles.Contains("Administrator"))
+                    if (roles.Contains("Administrator")) 
                     {
                         await userManager.AddClaimAsync(user, new Claim(CustomClaimTypes.Publisher, "Admin"));
 
